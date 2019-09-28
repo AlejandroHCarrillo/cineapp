@@ -2,44 +2,70 @@ package net.itinajero.app.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.itinajero.app.model.Pelicula;
+import net.itinajero.app.util.Utileria;
 
 @Controller
 public class HomeController {
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
-/*	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public String goHome(){
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String goHome() {
 		return "home";
 	}
-*/
+
+	@RequestMapping(value="/search", method=RequestMethod.POST)
+	public String buscar(Model model, @RequestParam("fecha") String fecha){
+		
+		List<String> listaFechas = Utileria.getNextDays(7);		
+		List<Pelicula> peliculas = getLista();
+
+		model.addAttribute("fechas", listaFechas);
+		model.addAttribute("fechaBusqueda", fecha);
+		model.addAttribute("peliculas", peliculas);
+		
+		System.out.println("Buscando todas las peliculas en exhibicion para la fecha: " + fecha);
+		return "home";
+	}
+
+
 	@RequestMapping(value="/")
 	public String mostrarPrincipal(Model model) {
+		List<String> listaFechas = Utileria.getNextDays(7);
+		
+		System.out.println(listaFechas);
+		
+		model.addAttribute("fechas", listaFechas);
+		model.addAttribute("fechaBusqueda", dateFormat.format(new Date()));
 		model.addAttribute("peliculas", getLista());
 		
 		return "home";
 		
 	}
 
-	@RequestMapping(value="/detail")
-	public String mostrarDetalle(Model model) {				
-		String titulo = "Rapido y Furioso";
-		int duracion = 123;
-		double precio = 50;
-		
-		model.addAttribute("titulo", titulo);
-		model.addAttribute("duracion", duracion);
-		model.addAttribute("precio", precio);
+//	@RequestMapping(value="/detail/{id}/{fechaBusqueda}", method=RequestMethod.GET)
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+//	public String mostrarDetalle(Model model, @PathVariable("id") int idPelicula, @PathVariable("fechaBusqueda") String fechaBusqueda ) {
+	public String mostrarDetalle(Model model, 
+				@RequestParam("idMovie") int idPelicula,
+				@RequestParam("fecha") String fechaBusqueda
+				) {
+	
+		System.out.println("idPelicula:" + idPelicula);
+		System.out.println("fechaBusqueda:" + fechaBusqueda);
 				
-		
-		return "detalle";
-		
+		return "detalle";		
 	}
 	
 	private List<Pelicula> getLista(){
@@ -86,12 +112,23 @@ public class HomeController {
 			pelicula4.setImagen("kong.png"); // Nombre del archivo de imagen
 			pelicula4.setEstatus("Inactiva"); // Esta pelicula estara inactiva
 			
+			Pelicula pelicula5 = new Pelicula();
+			pelicula5.setId(5);
+			pelicula5.setTitulo("Life: Vida Inteligente");
+			pelicula5.setDuracion(104);
+			pelicula5.setClasificacion("B");
+			pelicula5.setGenero("Drama");
+			pelicula5.setFechaEstreno(formatter.parse("10-06-2017"));
+			pelicula5.setImagen("estreno5.png"); // Nombre del archivo de imagen
+			pelicula5.setEstatus("Activa"); // Esta pelicula estara inactiva
+
 			// Agregamos los objetos Pelicula a la lista
 				
 			peliculas.add(pelicula1);
 			peliculas.add(pelicula2);
 			peliculas.add(pelicula3);
 			peliculas.add(pelicula4);
+			peliculas.add(pelicula5);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

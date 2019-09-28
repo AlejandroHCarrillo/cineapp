@@ -68,7 +68,4 @@ public class Pelicula {
 						  "genero=" + genero + ", imagen=" + imagen + ", " +
 						  "fechaEstreno=" + fechaEstreno  + ", Estatus=" + Estatus + "]";
 	}
-	
-	
-
 }
