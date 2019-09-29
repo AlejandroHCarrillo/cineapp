@@ -12,6 +12,9 @@ public class Pelicula {
 	private Date fechaEstreno;
 	private String Estatus = "Activa";
 	
+	private String actores = "No especificados";
+	private String director = "Desconocido";
+	
 	public int getId() {
 		return id;
 	}
@@ -61,11 +64,26 @@ public class Pelicula {
 		Estatus = estatus;
 	}
 	
+	public String getActores() {
+		return actores;
+	}
+	public void setActores(String actores) {
+		this.actores = actores;
+	}
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	
 	@Override
 	public String toString() {
 		return "Pelicula [ id=" + id + ", titulo=" + titulo + ", " + 
 						  "duracion=" + duracion + ", clasificacion=" + clasificacion + ", " + 
 						  "genero=" + genero + ", imagen=" + imagen + ", " +
-						  "fechaEstreno=" + fechaEstreno  + ", Estatus=" + Estatus + "]";
+						  "fechaEstreno=" + fechaEstreno  + ", Estatus=" + Estatus + ", " + 
+						  "actores=" + actores + ", director=" + director + "]";
 	}
+
 }

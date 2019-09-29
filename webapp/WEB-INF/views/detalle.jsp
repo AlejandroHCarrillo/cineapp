@@ -26,17 +26,19 @@
   		<jsp:include page="includes/menu.jsp"></jsp:include>
 
 		<div class="container theme-showcase" role="main">
-
+		
+pelicula:		${pelicula}
+XXXX
 			<!-- Marketing messaging -->
 			<div class="container marketing">
 
 				<div class="page-header">
-					<h2>FRAGMENTADO</h2>
+					<h2>${pelicula.titulo}</h2>
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
 						<p class="text-center">
-							<img class="img-rounded" src="${urlPublic}/images/estreno3.png" alt="Generic placeholder image" width="155" height="220">            
+							<img class="img-rounded" src="${urlPublic}/images/${pelicula.imagen}" alt="Generic placeholder image" width="155" height="220">            
 						</p>
 					</div>
 					<div class="col-sm-9">
@@ -46,13 +48,13 @@
 							</div>
 							<div class="panel-body">                           
 								<p>
-									Título Original : Split <br>
-									Actores : James McAvoy, Anya Taylor Joy, Betty Buckley, Brad William Henke <br>
-									Director: Night Shyamalan <br>                  
-									Clasificación: B15 <br>
-									Duración: 118 minutos <br>
-									Género: Thriller <br>                  
-									Fecha Estreno: 2017-05-02                  
+									Título Original : ${pelicula.titulo} <br>
+									Actores : {pelicula.actores} <br>
+									Director: {pelicula.director} <br>                  
+									Clasificación: ${pelicula.clasificacion} <br>
+									Duración: ${pelicula.duracion} minutos <br>
+									Género: ${pelicula.genero} <br>                  
+									Fecha Estreno: <fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/>                  
 								</p> 
 
 							</div>
