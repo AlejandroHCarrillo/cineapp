@@ -14,11 +14,8 @@
 		<title>Detalles de la pelicula</title>
 
 		<spring:url value="/resources" var="urlPublic" />
-		<link rel="stylesheet" 
-			  href="${urlPublic}/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="${urlPublic}/bootstrap/css/bootstrap.min.css">
 	    <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-
-
 	</head>
 
 	<body>
@@ -26,9 +23,6 @@
   		<jsp:include page="includes/menu.jsp"></jsp:include>
 
 		<div class="container theme-showcase" role="main">
-		
-pelicula:		${pelicula}
-XXXX
 			<!-- Marketing messaging -->
 			<div class="container marketing">
 
@@ -48,13 +42,13 @@ XXXX
 							</div>
 							<div class="panel-body">                           
 								<p>
-									Título Original : ${pelicula.titulo} <br>
+									T&uacute;tulo Original : ${pelicula.titulo} <br>
 									Actores : {pelicula.actores} <br>
 									Director: {pelicula.director} <br>                  
-									Clasificación: ${pelicula.clasificacion} <br>
-									Duración: ${pelicula.duracion} minutos <br>
-									Género: ${pelicula.genero} <br>                  
-									Fecha Estreno: <fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/>                  
+									Clasificaci&oacute;n: ${pelicula.clasificacion} <br>
+									Duraci&oacute;n: ${pelicula.duracion} minutos <br>
+									G&eacute;nero: ${pelicula.genero} <br>                  
+									Fecha Estreno: <fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/>                
 								</p> 
 
 							</div>
@@ -156,6 +150,6 @@ XXXX
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-		<script src="bootstrap/js/bootstrap.min.js"></script> 
+		<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script> 
 	</body>
 </html>

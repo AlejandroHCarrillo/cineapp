@@ -96,4 +96,10 @@ public class PeliculasServiceImp implements IPeliculasService {
 		return null;
 	}
 
+	public void insertar(Pelicula pelicula) {
+		lista.add(pelicula);
+		
+		
+	}
+
 }
