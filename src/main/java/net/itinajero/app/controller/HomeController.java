@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.itinajero.app.model.Pelicula;
+//import net.itinajero.app.service.IBannersService;
 import net.itinajero.app.service.IPeliculasService;
 import net.itinajero.app.util.Utileria;
 
 @Controller
 public class HomeController {
+//	@Autowired
+//	private IBannersService serviceBanners;
 	@Autowired
 	private IPeliculasService servicePeliculas;
 	
@@ -31,12 +34,13 @@ public class HomeController {
 	@RequestMapping(value="/search", method=RequestMethod.POST)
 	public String buscar(Model model, @RequestParam("fecha") String fecha){
 		
-		List<String> listaFechas = Utileria.getNextDays(7);		
+		List<String> listaFechas = Utileria.getNextDays(7);
+		
 		List<Pelicula> peliculas = servicePeliculas.buscarTodas();
-
 		model.addAttribute("fechas", listaFechas);
 		model.addAttribute("fechaBusqueda", fecha);
 		model.addAttribute("peliculas", peliculas);
+//		model.addAttribute("banners", serviceBanners.buscarTodos());
 		
 		System.out.println("Buscando todas las peliculas en exhibicion para la fecha: " + fecha);
 		return "home";

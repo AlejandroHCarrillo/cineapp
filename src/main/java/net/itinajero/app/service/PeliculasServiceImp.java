@@ -97,9 +97,7 @@ public class PeliculasServiceImp implements IPeliculasService {
 	}
 
 	public void insertar(Pelicula pelicula) {
-		lista.add(pelicula);
-		
-		
+		lista.add(pelicula);		
 	}
 
 }

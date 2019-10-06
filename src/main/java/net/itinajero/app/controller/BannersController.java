@@ -21,58 +21,58 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import net.itinajero.app.model.Pelicula;
-import net.itinajero.app.service.IPeliculasService;
+import net.itinajero.app.model.Banner;
+import net.itinajero.app.service.IBannersService;
 import net.itinajero.app.util.Utileria;
 //import net.itinajero.app.util.Utileria;
 
 @Controller
-@RequestMapping("/peliculas")
-public class PeliculasController {
+@RequestMapping("/banners")
+public class BannersController {
 	@Autowired
-	private IPeliculasService servicePeliculas;
+	private IBannersService serviceBanners;
 	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
-		System.out.println("home - index");
-		List<Pelicula> lista = servicePeliculas.buscarTodas();
+		System.out.println("Banners: home - index");
+		List<Banner> lista = serviceBanners.buscarTodos();
 		
-		model.addAttribute("peliculas", lista);
-		return "peliculas/listPeliculas";
+		model.addAttribute("banners", lista);
+		return "banners/listBanners";
 	}
 	
 	@GetMapping("/create")
 	public String crear() {		
-		System.out.println("Crear una pelicula");
-		return "peliculas/frmPelicula";
+		System.out.println("Crear un banner");
+		return "banners/frmBanner";
 	}
 	
 	@PostMapping("/save")
-	public String guardar(Pelicula pelicula, BindingResult result, RedirectAttributes attributes,
+	public String guardar(Banner banner, BindingResult result, RedirectAttributes attributes,
 						  @RequestParam("archivoImagen") MultipartFile multiPart,
 						  HttpServletRequest request
 						) {
-		System.out.println("Guardando la pelicula");
+		System.out.println("Guardando el banner");
 		if(result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println("Errores: "+ error.getDefaultMessage());				
 			}
-			return "peliculas/frmPelicula";
+			return "banners/frmBanner";
 		}
 		
 		if(!multiPart.isEmpty()) {
 			System.out.println("El multiPart NO está vacio, Si mandaron una imagen");
 			String nombreImagen = Utileria.guardarImagen(multiPart, request);			
-			pelicula.setImagen(nombreImagen);
+			banner.setArchivo(nombreImagen);
 		}
 		
-		servicePeliculas.insertar(pelicula);
+		serviceBanners.insertar(banner);
 		
-		System.out.println("Guardando la pelicula: "+ pelicula);		
-		attributes.addFlashAttribute("mensaje", "La pelicula fue guardada con éxito.");		
-		System.out.println("La pelicula fue guardada con éxito.");		
+		System.out.println("Guardando el banner: "+ banner);		
+		attributes.addFlashAttribute("mensaje", "El banner fue guardado con éxito.");		
+		System.out.println("El banner fue guardado con éxito.");		
 		
-		return "redirect:/peliculas/index";
+		return "redirect:/banners/index";
 	}
 	
 	
