@@ -55,7 +55,7 @@ public class BannersServiceImp implements IBannersService {
 	 * Regresamos la lista de objetos Banner
 	 */
 	public List<Banner> buscarTodos() {
-		System.out.println(lista);
+//		System.out.println(lista);
 		return lista;
 	}
 
